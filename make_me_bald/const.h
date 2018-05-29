@@ -19,3 +19,4 @@ void generator(char chess[][15], char neighbors[][15]);
 void flat(char chess[][15], char sequance[][16]);
 int evaluate(char sequance[][16]);
 char find(char place[16], char goal[], char length);
+int score(char chess[][15], int x, int y);

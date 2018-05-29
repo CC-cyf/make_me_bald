@@ -1,16 +1,43 @@
 ﻿#include "const.h"
 
 void computer_do(char chess[][15])
-{/*
+{
 	char neighbor[15][15];
+	int scores[15][15];
 	for (int i = 0; i < 15; i++)
 	{
 		for (int j = 0; j < 15; j++)
 		{
 			neighbor[i][j] = empty;
+			scores[i][j] = 0;
 		}
 	}
-	generator(chess, neighbor);*/
+	generator(chess, neighbor);
+	for (int i = 0; i < 15; i++)
+	{
+		for (int j = 0; j < 15; j++)
+		{
+			if (neighbor[i][j] != empty)
+			{
+				scores[i][j]=score(chess, i, j);
+				//************************************************
+			}
+		}
+	}
+	int x=0, y=0, maxscore=0;
+	for (int i = 0; i < 15; i++)
+	{
+		for (int j = 0; j < 15; j++)
+		{
+			if (scores[i][j] > maxscore)
+			{
+				maxscore = scores[i][j];
+				x = i;
+				y = j;
+			}
+		}
+	}
+	chess[x][y] = computer_color;
 }
 
 //生成待计算的位置图
@@ -161,4 +188,21 @@ char find(char place[16], char goal[], char length)
 		}
 	}
 	return show_up_times;
+}
+
+int score(char chess[][15], int x, int y)
+{
+	char chess_temp[15][15],sequance[72][16];
+	int score;
+	for (int i = 0; i < 15; i++)
+	{
+		for (int j = 0; j < 15; j++)
+		{
+			chess_temp[i][j] = chess[i][j];
+		}
+	}
+	chess_temp[x][y] = computer_color;
+	flat(chess_temp, sequance);
+	score = evaluate(sequance);
+	return score;
 }

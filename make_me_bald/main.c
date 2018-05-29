@@ -112,7 +112,7 @@ void draw(char chess[][15])
 	}
 }
 
-char whos_winner(char chess[][15])
+char whos_winner(char chess[][15])  //*************************** 
 {
 	char white_num, black_num;
 	//横向查找
