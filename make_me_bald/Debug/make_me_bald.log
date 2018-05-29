@@ -1,0 +1,8 @@
+﻿  compute.c
+e:\visual studio\make_me_bald\make_me_bald\compute.c(14): warning C4013: “getchar”未定义；假设外部返回 int
+  main.c
+e:\visual studio\make_me_bald\make_me_bald\main.c(41): warning C4553: “==”: 运算符不起任何作用；是否是有意使用“=”的?
+e:\visual studio\make_me_bald\make_me_bald\main.c(45): warning C4477: “scanf”: 格式字符串“%d”需要类型“int *”的参数，但可变参数 1 拥有了类型“char *”
+  e:\visual studio\make_me_bald\make_me_bald\main.c(45): note: 请考虑在格式字符串中使用“%hhd”
+  正在生成代码...
+  make_me_bald.vcxproj -> E:\Visual Studio\make_me_bald\Debug\make_me_bald.exe
