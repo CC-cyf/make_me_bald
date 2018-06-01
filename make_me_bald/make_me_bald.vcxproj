@@ -116,6 +116,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="compute.c" />
+    <ClCompile Include="evaluate.c" />
     <ClCompile Include="main.c" />
   </ItemGroup>
   <ItemGroup>

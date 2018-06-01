@@ -21,6 +21,9 @@
     <ClCompile Include="compute.c">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="evaluate.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="const.h">

@@ -5,7 +5,7 @@
 int main()
 {
 	system("mode con cols=50 lines=22");
-	char x, y, winner=empty;
+	char x, y, winner = empty;
 	int chess_num = 0;
 	//extern player_color, computer_color;
 	char chess[15][15];
@@ -35,10 +35,9 @@ reinput_color:
 		chess[7][7] = computer_color;
 		chess_num++;
 	}
-//*************************************************
+	//*************************************************
 	while (winner == empty)
 	{
-		winner == whos_winner(chess);
 	reinput_position:
 		draw(chess);
 		printf("请输入行号（0-14）：");
@@ -75,14 +74,16 @@ reinput_color:
 		}
 		draw(chess);
 		computer_do(chess);
+		chess_num++;
+		winner = whos_winner(chess);
 	}
-//*********************************************
+	//*********************************************
 }
 
 void draw(char chess[][15])
 {
 	system("cls");
-	printf("*代表白子，%c 代表黑子\n",1);
+	printf("*代表白子，%c 代表黑子\n", 1);
 	printf("\t");
 	for (int i = 0; i < 15; i++)
 	{
@@ -97,7 +98,7 @@ void draw(char chess[][15])
 		{
 			if (chess[i][j] == black)
 			{
-				printf("%c ",1);
+				printf("%c ", 1);
 			}
 			else if (chess[i][j] == white)
 			{
@@ -112,162 +113,16 @@ void draw(char chess[][15])
 	}
 }
 
-char whos_winner(char chess[][15])  //*************************** 
+char whos_winner(char chess[][15])
 {
-	char white_num, black_num;
-	//横向查找
-	for (int i = 0; i < 15; i++)
+	char sequance[72][16];
+	char player_win[5] = { player_color,player_color,player_color,player_color,player_color };
+	char computer_win[5] = { computer_color,computer_color,computer_color,computer_color,computer_color };
+	flat(chess, sequance);
+	for (int i = 0; i < 72; i++)
 	{
-		white_num = 0;
-		black_num = 0;
-		for (int j = 0; j < 15; j++)
-		{
-			if (chess[i][j] == white)
-			{
-				white_num++;
-				black_num = 0;
-			}
-			else if (chess[i][j] == black)
-			{
-				black_num++;
-				white_num = 0;
-			}
-			else
-			{
-				white_num = 0;
-				black_num = 0;
-			}
-			if (black_num == 5)return black;
-			if (white_num == 5)return white;
-		}
-	}
-	//纵向查找
-	for (int i = 0; i < 15; i++)
-	{
-		white_num = 0;
-		black_num = 0;
-		for (int j = 0; j < 15; j++)
-		{
-			if (chess[j][i] == white)
-			{
-				white_num++;
-				black_num = 0;
-			}
-			else if (chess[j][i] == black)
-			{
-				black_num++;
-				white_num = 0;
-			}
-			else
-			{
-				white_num = 0;
-				black_num = 0;
-			}
-			if (black_num == 5)return black;
-			if (white_num == 5)return white;
-		}
-	}
-	//"/"这样查找
-	for (int i = 4; i < 15; i++)
-	{
-		white_num = 0;
-		black_num = 0;
-		for (int j = 0; j <= i; j++)
-		{
-			if (chess[j][i - j] == white)
-			{
-				white_num++;
-				black_num = 0;
-			}
-			else if (chess[j][i - j] == black)
-			{
-				black_num++;
-				white_num = 0;
-			}
-			else
-			{
-				white_num = 0;
-				black_num = 0;
-			}
-			if (black_num == 5)return black;
-			if (white_num == 5)return white;
-		}
-	}
-	for (int i = 1; i < 11; i++)
-	{
-		white_num = 0;
-		black_num = 0;
-		for (int j = 14; j >= i; j--)
-		{
-			if (chess[i + 14 - j][j] == white)
-			{
-				white_num++;
-				black_num = 0;
-			}
-			else if (chess[i + 14 - j][j] == black)
-			{
-				black_num++;
-				white_num = 0;
-			}
-			else
-			{
-				white_num = 0;
-				black_num = 0;
-			}
-			if (black_num == 5)return black;
-			if (white_num == 5)return white;
-		}
-	}
-	//"\"这样查找
-	for (int i = 0; i < 11; i++)
-	{
-		white_num = 0;
-		black_num = 0;
-		for (int j = 0; j < 15 - i; j++)
-		{
-			if (chess[i + j][j] == white)
-			{
-				white_num++;
-				black_num = 0;
-			}
-			else if (chess[i + j][j] == black)
-			{
-				black_num++;
-				white_num = 0;
-			}
-			else
-			{
-				white_num = 0;
-				black_num = 0;
-			}
-			if (black_num == 5)return black;
-			if (white_num == 5)return white;
-		}
-	}
-	for (int i = 1; i < 11; i++)
-	{
-		white_num = 0;
-		black_num = 0;
-		for (int j = 0; j < 15 - i; j++)
-		{
-			if (chess[j][i + j] == white)
-			{
-				white_num++;
-				black_num = 0;
-			}
-			else if (chess[j][i + j] == black)
-			{
-				black_num++;
-				white_num = 0;
-			}
-			else
-			{
-				white_num = 0;
-				black_num = 0;
-			}
-			if (black_num == 5)return black;
-			if (white_num == 5)return white;
-		}
+		if (find(sequance[i], player_win, 5) != 0) return player_color;
+		if (find(sequance[i], computer_win, 5) != 0) return computer_color;
 	}
 	return empty;
 }

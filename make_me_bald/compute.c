@@ -19,12 +19,12 @@ void computer_do(char chess[][15])
 		{
 			if (neighbor[i][j] != empty)
 			{
-				scores[i][j]=score(chess, i, j);
+				scores[i][j] = score(chess, i, j);
 				//************************************************
 			}
 		}
 	}
-	int x=0, y=0, maxscore=0;
+	int x = 0, y = 0, maxscore = 0;
 	for (int i = 0; i < 15; i++)
 	{
 		for (int j = 0; j < 15; j++)
@@ -118,55 +118,6 @@ void flat(char chess[][15], char sequance[][16])
 	}
 }
 
-//局势评分
-int evaluate(char sequance[][16])
-{
-	int score = 0;
-	//100000分
-	char chenwu[5] = { computer_color,computer_color,computer_color,computer_color,computer_color };
-	//10000分
-	char huosi1[6] = { empty,computer_color,computer_color,computer_color,computer_color,empty };
-	char huosi2[5] = { computer_color,empty,computer_color,computer_color,computer_color };
-	char huosi3[5] = { computer_color,computer_color,empty,computer_color,computer_color };
-	char huosi4[5] = { computer_color,computer_color,computer_color,empty,computer_color };
-	//1000分
-	char sisi1[6] = { empty,computer_color,computer_color,computer_color,computer_color,player_color };
-	char sisi2[6] = { player_color,computer_color,computer_color,computer_color,computer_color,empty };
-	char huosan[5] = { empty,computer_color,computer_color,computer_color,empty };
-	//100分
-	char sisan1[5] = { empty,computer_color,computer_color,computer_color,player_color };
-	char sisan2[5] = { player_color,computer_color,computer_color,computer_color,empty };
-	char huoer[4] = { empty,computer_color,computer_color,empty };
-	//10分
-	char sier1[4] = { empty,computer_color,computer_color,player_color };
-	char sier2[4] = { player_color,computer_color,computer_color,empty };
-	char huoyi[3] = { empty,computer_color,empty };
-	//*********************************************************************************
-	for (int i = 0; i <= 72; i++)
-	{
-		//100000
-		score += (100000 * find(sequance[i], chenwu, 5));
-		//10000
-		score += (10000 * find(sequance[i], huosi1, 6));
-		score += (10000 * find(sequance[i], huosi2, 5));
-		score += (10000 * find(sequance[i], huosi3, 5));
-		score += (10000 * find(sequance[i], huosi4, 5));
-		//1000
-		score += (1000 * find(sequance[i], sisi1, 6));
-		score += (1000 * find(sequance[i], sisi2, 6));
-		score += (1000 * find(sequance[i], huosan, 5));
-		//100
-		score += (100 * find(sequance[i], sisan1, 5));
-		score += (100 * find(sequance[i], sisan2, 5));
-		score += (100 * find(sequance[i], huoer, 4));
-		//10
-		score += (10 * find(sequance[i], sier1, 4));
-		score += (10 * find(sequance[i], sier2, 4));
-		score += (10 * find(sequance[i], huoyi, 3));
-	}
-	return score;
-}
-
 //在序列中查找指定序列，并返回出现次数
 char find(char place[16], char goal[], char length)
 {
@@ -192,7 +143,7 @@ char find(char place[16], char goal[], char length)
 
 int score(char chess[][15], int x, int y)
 {
-	char chess_temp[15][15],sequance[72][16];
+	char chess_temp[15][15], sequance[72][16];
 	int score;
 	for (int i = 0; i < 15; i++)
 	{
