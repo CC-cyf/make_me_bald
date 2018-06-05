@@ -77,6 +77,12 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
+    <Link>
+      <StackReserveSize>20000000</StackReserveSize>
+    </Link>
+    <Link>
+      <StackCommitSize>20000000</StackCommitSize>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -115,9 +121,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="alpha_beta.c" />
     <ClCompile Include="compute.c" />
     <ClCompile Include="evaluate.c" />
     <ClCompile Include="main.c" />
+    <ClCompile Include="minimax.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="const.h" />

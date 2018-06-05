@@ -3,7 +3,7 @@
 
 #define false 0
 #define true 1
-#define DEPTH 1
+#define DEPTH 3
 #define KILL_DEPTH 3
 #define NEIGHBOR_DEPTH 2
 enum chesses { empty = 1, white, black };
@@ -17,6 +17,14 @@ char whos_winner(char chess[][15]);
 void computer_do(char chess[][15]);
 void generator(char chess[][15], char neighbors[][15]);
 void flat(char chess[][15], char sequance[][16]);
-int evaluate(char sequance[][16]);
 char find(char place[16], char goal[], char length);
-int score(char chess[][15], int x, int y);
+int do_score(char chess[][15], int x, int y);
+
+//evaluate.c
+int evaluate(char sequance[][16]);
+
+//alpha_beta.c
+int alpha_beta(int score, int alpha, int beta);
+
+//minimax.c
+int minimax(char chess[][15], char depth, int x, int y);

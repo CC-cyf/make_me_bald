@@ -19,7 +19,8 @@ void computer_do(char chess[][15])
 		{
 			if (neighbor[i][j] != empty)
 			{
-				scores[i][j] = score(chess, i, j);
+				scores[i][j]=minimax(chess, i, j,DEPTH);
+				//scores[i][j] = do_score(chess, i, j);
 				//************************************************
 			}
 		}
@@ -141,7 +142,7 @@ char find(char place[16], char goal[], char length)
 	return show_up_times;
 }
 
-int score(char chess[][15], int x, int y)
+int do_score(char chess[][15], int x, int y)
 {
 	char chess_temp[15][15], sequance[72][16];
 	int score;

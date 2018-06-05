@@ -1,5 +1,7 @@
 ﻿#include "const.h"
 
+//带有_p则代表玩家的排序
+
 //局势评分
 int evaluate(char sequance[][16])
 {
