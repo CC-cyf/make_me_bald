@@ -207,17 +207,11 @@ char find(char place[16], char goal[], char length)
 
 int do_score(char chess[][15], int x, int y)
 {
-	char chess_temp[15][15], sequance[72][16];
+	char sequance[72][16];
 	int score;
-	for (int i = 0; i < 15; i++)
-	{
-		for (int j = 0; j < 15; j++)
-		{
-			chess_temp[i][j] = chess[i][j];
-		}
-	}
-	chess_temp[x][y] = computer_color;
-	flat(chess_temp, sequance);
+	chess[x][y] = computer_color;
+	flat(chess, sequance);
+	chess[x][y] = empty;
 	score = evaluate(sequance);
 	return score;
 }
