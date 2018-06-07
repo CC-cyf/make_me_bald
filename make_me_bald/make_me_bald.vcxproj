@@ -78,10 +78,10 @@
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
-      <StackReserveSize>167772160</StackReserveSize>
+      <StackReserveSize>16777216</StackReserveSize>
     </Link>
     <Link>
-      <StackCommitSize>167772160</StackCommitSize>
+      <StackCommitSize>16777216</StackCommitSize>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
