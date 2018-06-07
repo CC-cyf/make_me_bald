@@ -2,43 +2,45 @@
 
 void computer_do(char chess[][15])
 {
-	char neighbor[15][15];
-	int scores[15][15];
-	for (int i = 0; i < 15; i++)
-	{
-		for (int j = 0; j < 15; j++)
-		{
-			neighbor[i][j] = empty;
-			scores[i][j] = 0;
-		}
-	}
-	generator(chess, neighbor);
-	for (int i = 0; i < 15; i++)
-	{
-		for (int j = 0; j < 15; j++)
-		{
-			if (neighbor[i][j] != empty)
-			{
-				scores[i][j]=minimax(chess, i, j,DEPTH);
-				//scores[i][j] = do_score(chess, i, j);
-				//************************************************
-			}
-		}
-	}
-	int x = 0, y = 0, maxscore = 0;
-	for (int i = 0; i < 15; i++)
-	{
-		for (int j = 0; j < 15; j++)
-		{
-			if (scores[i][j] > maxscore)
-			{
-				maxscore = scores[i][j];
-				x = i;
-				y = j;
-			}
-		}
-	}
-	chess[x][y] = computer_color;
+	//char neighbor[15][15];
+	//int scores[15][15];
+	//for (int i = 0; i < 15; i++)
+	//{
+	//	for (int j = 0; j < 15; j++)
+	//	{
+	//		neighbor[i][j] = 0;
+	//		scores[i][j] = 0;
+	//	}
+	//}
+	//generator(chess, neighbor);
+	//for (int i = 0; i < 15; i++)
+	//{
+	//	for (int j = 0; j < 15; j++)
+	//	{
+	//		if (neighbor[i][j] != 0)
+	//		{
+	//			scores[i][j]=minimax(chess,DEPTH);
+	//			//scores[i][j] = do_score(chess, i, j);
+	//			//************************************************
+	//		}
+	//	}
+	//}
+	//int x = 0, y = 0, maxscore = 0;
+	//for (int i = 0; i < 15; i++)
+	//{
+	//	for (int j = 0; j < 15; j++)
+	//	{
+	//		if (scores[i][j] > maxscore)
+	//		{
+	//			maxscore = scores[i][j];
+	//			x = i;
+	//			y = j;
+	//		}
+	//	}
+	//}
+	char position[2];
+	minimax(chess, position);
+	chess[position[0]][position[1]] = computer_color;
 }
 
 //生成待计算的位置图
@@ -155,6 +157,15 @@ int do_score(char chess[][15], int x, int y)
 	}
 	chess_temp[x][y] = computer_color;
 	flat(chess_temp, sequance);
+	score = evaluate(sequance);
+	return score;
+}
+
+int scoring(char chess[][15])
+{
+	char sequance[72][16];
+	int score;
+	flat(chess, sequance);
 	score = evaluate(sequance);
 	return score;
 }

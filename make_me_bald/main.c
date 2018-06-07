@@ -78,6 +78,11 @@ reinput_color:
 		winner = whos_winner(chess);
 	}
 	//*********************************************
+	if (winner == player_color)
+	{
+		system("cls");
+		printf("");
+	}
 }
 
 void draw(char chess[][15])
