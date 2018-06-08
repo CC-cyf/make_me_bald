@@ -80,8 +80,13 @@ reinput_color:
 	//*********************************************
 	if (winner == player_color)
 	{
-		system("cls");
-		printf("");
+		printf("你赢了\n");
+		system("pause");
+	}
+	if (winner == computer_color)
+	{
+		printf("你输了\n");
+		system("pause");
 	}
 }
 

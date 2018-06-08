@@ -38,70 +38,9 @@ void computer_do(char chess[][15])
 	//		}
 	//	}
 	//}
-	int scores_1[15][15], scores_2[15][15], scores_3[15][15], scores_temp1, scores_temp2, scores_temp3;
-	char chess_temp[15][15], neighbors_1[15][15], neighbors_2[15][15], neighbors_3[15][15],x,y;
-	for (int i = 0; i < 15; i++)
-	{
-		for (int j = 0; j < 15; j++)
-		{
-			neighbors_1[i][j] = 0;
-			neighbors_2[i][j] = 0;
-			neighbors_3[i][j] = 0;
-			chess_temp[i][j] = chess[i][j];
-		}
-	}
-	generator(chess_temp, neighbors_1);
-	scores_temp1 = -1000000000;
-	for (int i_1 = 0; i_1 < 15; i_1++)
-	{
-		for (int j_1 = 0; j_1 < 15; j_1++)
-		{
-			//计算机下棋
-			if (neighbors_1[i_1][j_1] != 0)
-			{
-				chess_temp[i_1][j_1] = computer_color;
-				generator(chess_temp, neighbors_2);
-				scores_temp2 = 1000000000;
-				for (int i_2 = 0; i_2 < 15; i_2++)
-				{
-					for (int j_2 = 0; j_2 < 15; j_2++)
-					{
-						if (neighbors_1[i_2][j_2] != 0)
-						{
-							//玩家下棋
-							chess_temp[i_2][j_2] = player_color;
-							generator(chess_temp, neighbors_3);
-							scores_temp3 = -1000000000;
-							for (int i_3 = 0; i_3 < 15; i_3++)
-							{
-								for (int j_3 = 0; j_3 < 15; j_3++)
-								{
-									if (neighbors_1[i_3][j_3] != 0)
-									{
-										//计算机下棋
-										chess_temp[i_3][j_3] = computer_color;
-										scores_3[i_3][j_3] = scoring(chess_temp);
-										scores_temp3 = scores_temp3 > scores_3[i_3][j_3] ? scores_temp3 : scores_3[i_3][j_3];
-										chess_temp[i_3][j_3] = empty;
-									}
-								}
-							}
-							scores_2[i_2][j_2] = scores_temp3;
-							scores_temp2 = scores_temp2 < scores_2[i_2][j_2] ? scores_temp2 : scores_2[i_2][j_2];
-						}
-					}
-				}
-				scores_1[i_1][j_1] = scores_temp2;
-				if (scores_temp1 < scores_1[i_1][j_1])
-				{
-					scores_temp1 = scores_1[i_1][j_1];
-					x = i_1;
-					y = j_1;
-				}
-			}
-		}
-	}
-	chess[x][y] = computer_color;
+	struct point p;
+	p = maxmin(chess, DEPTH);
+	chess[p.x][p.y] = computer_color;
 }
 
 //生成待计算的位置图
@@ -153,14 +92,14 @@ void flat(char chess[][15], char sequance[][16])
 	//"/"这样的序列
 	for (int i = 4; i < 15; i++)
 	{
-		for (int j = 0; j < i; j++)
+		for (int j = 0; j <= i; j++)
 		{
 			sequance[i + 30][j] = chess[j][i - j];
 		}
 	}
 	for (int i = 1; i < 11; i++)
 	{
-		for (int j = 14; j > i; j--)
+		for (int j = 14; j >= i; j--)
 		{
 			sequance[i + 41][j] = chess[i + 14 - j][j];
 		}
@@ -168,14 +107,14 @@ void flat(char chess[][15], char sequance[][16])
 	//"\"这样的序列
 	for (int i = 0; i < 11; i++)
 	{
-		for (int j = 0; j < 14 - i; j++)
+		for (int j = 0; j <= 14 - i; j++)
 		{
 			sequance[i + 51][j] = chess[i + j][j];
 		}
 	}
 	for (int i = 1; i < 11; i++)
 	{
-		for (int j = 0; j < 14 - i; j++)
+		for (int j = i-1; j <= 14 - i; j++)
 		{
 			sequance[i + 62][j] = chess[j][i + j];
 		}

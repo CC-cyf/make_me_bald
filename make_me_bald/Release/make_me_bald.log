@@ -1,11 +1,9 @@
-﻿  alpha_beta.c
-  compute.c
+﻿  compute.c
   evaluate.c
   main.c
 e:\visual studio\make_me_bald\make_me_bald\main.c(44): warning C4477: “scanf”: 格式字符串“%d”需要类型“int *”的参数，但可变参数 1 拥有了类型“char *”
   e:\visual studio\make_me_bald\make_me_bald\main.c(44): note: 请考虑在格式字符串中使用“%hhd”
   minimax.c
-  正在生成代码
-  All 15 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
-  已完成代码的生成
+  正在生成代码...
+  LINK : 已指定 /LTCG，但不需要生成代码；从链接命令行中移除 /LTCG 以提高链接器性能
   make_me_bald.vcxproj -> E:\Visual Studio\make_me_bald\Release\make_me_bald.exe
