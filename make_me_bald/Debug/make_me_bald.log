@@ -1,8 +1,4 @@
-﻿  compute.c
-  evaluate.c
-  main.c
-e:\visual studio\make_me_bald\make_me_bald\main.c(44): warning C4477: “scanf”: 格式字符串“%d”需要类型“int *”的参数，但可变参数 1 拥有了类型“char *”
-  e:\visual studio\make_me_bald\make_me_bald\main.c(44): note: 请考虑在格式字符串中使用“%hhd”
-  minimax.c
-  正在生成代码...
+﻿  alpha_beta.c
+e:\visual studio\make_me_bald\make_me_bald\alpha_beta.c(13): warning C4716: “a_max”: 必须返回一个值
+e:\visual studio\make_me_bald\make_me_bald\alpha_beta.c(8): warning C4716: “a_min”: 必须返回一个值
   make_me_bald.vcxproj -> E:\Visual Studio\make_me_bald\Debug\make_me_bald.exe

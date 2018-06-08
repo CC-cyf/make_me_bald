@@ -3,7 +3,7 @@
 
 #define false 0
 #define true 1
-#define DEPTH 5
+#define DEPTH 4
 #define KILL_DEPTH 3
 #define NEIGHBOR_DEPTH 2
 enum chesses { empty = 1, white, black };
@@ -25,11 +25,11 @@ int scoring(char chess[][15]);
 //evaluate.c
 int evaluate(char sequance[][16]);
 
-//alpha_beta.c
-int alpha_beta(int score, int alpha, int beta);
-
 //minimax.c
 int min(char chess[][15], int depth);
 int max(char chess[][15], int depth);
 struct point maxmin(char chess[][15], int depth);
-int minimax(char chess[][15], char position[]);
+
+//alpha_beta.c
+int ab_min(char chess[][15], int depth, int alpha, int beta);
+int ab_max(char chess[][15], int depth, int alpha, int beta);

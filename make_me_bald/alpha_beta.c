@@ -1,60 +1,77 @@
 ﻿#include "const.h"
 
-/*int alpha_beta(char chess[][15], int *scores, int *alpha, int *beta, char depth, char x, char y)
+//函数前方加上 ab_ 以示与极大极小值搜索的区别
+
+int ab_min(char chess[][15], int depth, int alpha, int beta)
 {
-	if (depth == 1)
+	int temp, best=1000000000;
+	if (depth <= 0 || whos_winner(chess) != empty)
 	{
-		*scores = do_score(chess, x, y);
-		*alpha = *scores;
-		return 0;
+		temp = scoring(chess);
+		return temp;
 	}
-	else
+	char neighbors[15][15];
+	for (int i = 0; i < 15; i++)
 	{
-		signed int scores_temp, scores_in;
-		if (depth % 2)
+		for (int j = 0; j < 15; j++)
 		{
-			scores_temp = -2147483640;         //负无穷
-			scores_in = -2147483640;         //负无穷
+			neighbors[i][j] = 0;
 		}
-		else
+	}
+	generator(chess, neighbors);
+	for (int i = 0; i < 15; i++)
+	{
+		for (int j = 0; j < 15; j++)
 		{
-			scores_temp = 2147483640;          //正无穷
-			scores_in = 2147483640;          //正无穷
-		}
-		char chess_temp[15][15], neighbor[15][15];
-		for (int i = 0; i < 15; i++)
-		{
-			for (int j = 0; j < 15; j++)
+			if (neighbors[i][j] != 0)
 			{
-				chess_temp[i][j] = chess[i][j];
-			}
-		}
-		generator(chess_temp, neighbor);
-		for (int i = 0; i < 15; i++)
-		{
-			for (int j = 0; j < 15; j++)
-			{
-				if (neighbor[i][j] != 0)
+				chess[i][j] = player_color;
+				temp = ab_max(chess, depth - 1, best < alpha ? best : alpha, beta);
+				chess[i][j] = empty;
+				if (temp < best)
 				{
-					alpha_beta(chess_temp, &scores_in, alpha, beta, depth - 1, i, j);
-					if (depth % 2)
-					{
-						if (scores_temp > scores_in)
-						{
-							scores_temp = scores_in;
-							alpha = scores_in;
-						}
-					}
-					else
-					{
-						if (scores_temp < scores_in)
-						{
-							scores_temp = scores_in;
-							beta = scores_in;
-						}
-					}
+					best = temp;
 				}
+				if (temp < beta) break;
 			}
 		}
 	}
-}*/
+	return best;
+}
+
+int ab_max(char chess[][15], int depth, int alpha, int beta)
+{
+	int temp, best=-1000000000;
+	if (depth <= 0 || whos_winner(chess) != empty)
+	{
+		temp = scoring(chess);
+		return temp;
+	}
+	char neighbors[15][15];
+	for (int i = 0; i < 15; i++)
+	{
+		for (int j = 0; j < 15; j++)
+		{
+			neighbors[i][j] = 0;
+		}
+	}
+	generator(chess, neighbors);
+	for (int i = 0; i < 15; i++)
+	{
+		for (int j = 0; j < 15; j++)
+		{
+			if (neighbors != 0)
+			{
+				chess[i][j] = computer_color;
+				temp = min(chess, depth - 1, alpha, best > beta ? best : beta);
+				chess[i][j] = empty;
+				if (temp > best)
+				{
+					best = temp;
+				}
+				if (temp > alpha)break;
+			}
+		}
+	}
+	return best;
+}

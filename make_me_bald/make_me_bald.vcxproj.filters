@@ -27,6 +27,9 @@
     <ClCompile Include="minimax.c">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="alpha_beta.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="const.h">

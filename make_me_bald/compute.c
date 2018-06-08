@@ -2,42 +2,6 @@
 
 void computer_do(char chess[][15])
 {
-	//char neighbor[15][15];
-	//int scores[15][15];
-	//for (int i = 0; i < 15; i++)
-	//{
-	//	for (int j = 0; j < 15; j++)
-	//	{
-	//		neighbor[i][j] = 0;
-	//		scores[i][j] = 0;
-	//	}
-	//}
-	//generator(chess, neighbor);
-	//for (int i = 0; i < 15; i++)
-	//{
-	//	for (int j = 0; j < 15; j++)
-	//	{
-	//		if (neighbor[i][j] != 0)
-	//		{
-	//			scores[i][j]=minimax(chess,DEPTH);
-	//			//scores[i][j] = do_score(chess, i, j);
-	//			//************************************************
-	//		}
-	//	}
-	//}
-	//int x = 0, y = 0, maxscore = 0;
-	//for (int i = 0; i < 15; i++)
-	//{
-	//	for (int j = 0; j < 15; j++)
-	//	{
-	//		if (scores[i][j] > maxscore)
-	//		{
-	//			maxscore = scores[i][j];
-	//			x = i;
-	//			y = j;
-	//		}
-	//	}
-	//}
 	struct point p;
 	p = maxmin(chess, DEPTH);
 	chess[p.x][p.y] = computer_color;
