@@ -35,7 +35,7 @@ void generator(char chess[][15], char neighbors[][15])
 }
 
 //将棋盘序列化，以便于评估
-void flat(char chess[][15], char sequance[][16])
+void flat(char chess[][15], char sequance[][15])
 {
 	//横向序列
 	for (int i = 0; i < 15; i++)
@@ -86,11 +86,11 @@ void flat(char chess[][15], char sequance[][16])
 }
 
 //在序列中查找指定序列，并返回出现次数
-char find(char place[16], char goal[], char length)
+char find(char place[15], char goal[], char length)
 {
 	char show_up_times = 0;
 	_Bool temp;
-	for (int i = 0; i < 16 - length; i++)
+	for (int i = 0; i < 15 - length; i++)
 	{
 		temp = 1;
 		for (int j = 0; j < length; j++)
@@ -110,7 +110,7 @@ char find(char place[16], char goal[], char length)
 
 int do_score(char chess[][15], int x, int y)
 {
-	char sequance[72][16];
+	char sequance[72][15];
 	int score;
 	chess[x][y] = computer_color;
 	flat(chess, sequance);
@@ -121,7 +121,7 @@ int do_score(char chess[][15], int x, int y)
 
 int scoring(char chess[][15])
 {
-	char sequance[72][16];
+	char sequance[72][15];
 	int score;
 	flat(chess, sequance);
 	score = evaluate(sequance);

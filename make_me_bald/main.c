@@ -128,7 +128,7 @@ void draw(char chess[][15])
 
 char whos_winner(char chess[][15])
 {
-	char sequance[72][16];
+	char sequance[72][15];
 	char player_win[5] = { player_color,player_color,player_color,player_color,player_color };
 	char computer_win[5] = { computer_color,computer_color,computer_color,computer_color,computer_color };
 	flat(chess, sequance);

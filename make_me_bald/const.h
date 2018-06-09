@@ -6,6 +6,8 @@
 #define DEPTH 4
 #define KILL_DEPTH 3
 #define NEIGHBOR_DEPTH 2
+#define MAX 1000000000
+#define MIN -1000000000
 enum chesses { empty = 1, white, black };
 struct point { int x; int y; };
 int player_color, computer_color;
@@ -17,8 +19,8 @@ char whos_winner(char chess[][15]);
 //compute.c
 void computer_do(char chess[][15]);
 void generator(char chess[][15], char neighbors[][15]);
-void flat(char chess[][15], char sequance[][16]);
-char find(char place[16], char goal[], char length);
+void flat(char chess[][15], char sequance[][15]);
+char find(char place[15], char goal[], char length);
 int do_score(char chess[][15], int x, int y);
 int scoring(char chess[][15]);
 

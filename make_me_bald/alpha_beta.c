@@ -4,7 +4,7 @@
 
 int ab_min(char chess[][15], int depth, int alpha, int beta)
 {
-	int temp, best = 1000000000;
+	int temp, best = MAX;
 	if (depth <= 0 || whos_winner(chess) != empty)
 	{
 		temp = scoring(chess);
@@ -41,7 +41,7 @@ int ab_min(char chess[][15], int depth, int alpha, int beta)
 
 int ab_max(char chess[][15], int depth, int alpha, int beta)
 {
-	int temp, best = -1000000000;
+	int temp, best = MIN;
 	if (depth <= 0 || whos_winner(chess) != empty)
 	{
 		temp = scoring(chess);

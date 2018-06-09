@@ -3,7 +3,7 @@
 struct point maxmin(char chess[][15], int depth)
 {
 	struct point p;
-	int best = -1000000000, temp, scores[15][15];
+	int best = MIN, temp, scores[15][15];
 	char neighbors[15][15];
 	for (int i = 0; i < 15; i++)
 	{
@@ -42,7 +42,7 @@ struct point maxmin(char chess[][15], int depth)
 
 int min(char chess[][15], int depth)
 {
-	int best = 1000000000, temp;
+	int best = MAX, temp;
 	if (depth <= 0 || whos_winner(chess) != empty)
 	{
 		best = scoring(chess);
@@ -78,7 +78,7 @@ int min(char chess[][15], int depth)
 
 int max(char chess[][15], int depth)
 {
-	int best = -1000000000, temp;
+	int best = MIN, temp;
 	if (depth <= 0 || whos_winner(chess))
 	{
 		temp = scoring(chess);

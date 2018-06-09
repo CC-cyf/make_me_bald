@@ -3,7 +3,7 @@
 //带有_p则代表玩家的排序
 
 //局势评分
-int evaluate(char sequance[][16])
+int evaluate(char sequance[][15])
 {
 	int score = 0;
 	//100000分
