@@ -1,9 +1,9 @@
 ﻿#include "const.h"
 
-struct point maxmin(char chess[][15],int depth)
+struct point maxmin(char chess[][15], int depth)
 {
 	struct point p;
-	int best = -1000000000, temp;
+	int best = -1000000000, temp, scores[15][15];
 	char neighbors[15][15];
 	for (int i = 0; i < 15; i++)
 	{
@@ -21,6 +21,7 @@ struct point maxmin(char chess[][15],int depth)
 			{
 				chess[i][j] = computer_color;
 				temp = min(chess, depth - 1);
+				scores[i][j] = temp;
 				if (temp == best)
 				{
 					p.x = i;

@@ -19,11 +19,11 @@ void generator(char chess[][15], char neighbors[][15])
 			for (int i = -NEIGHBOR_DEPTH; i <= NEIGHBOR_DEPTH; i++)
 			{
 				temp_x = x + i;
-				if (temp_x < 0 || temp_x>=15) continue;
+				if (temp_x < 0 || temp_x >= 15) continue;
 				for (int j = -NEIGHBOR_DEPTH; j <= NEIGHBOR_DEPTH; j++)
 				{
 					temp_y = y + j;
-					if (temp_y < 0 || temp_y>=15) continue;
+					if (temp_y < 0 || temp_y >= 15) continue;
 					if (chess[temp_x][temp_y] != empty)
 					{
 						neighbors[x][y]++;
@@ -58,14 +58,14 @@ void flat(char chess[][15], char sequance[][16])
 	{
 		for (int j = 0; j <= i; j++)
 		{
-			sequance[i + 30][j] = chess[j][i - j];
+			sequance[i + 30 - 4][j] = chess[j][i - j];
 		}
 	}
 	for (int i = 1; i < 11; i++)
 	{
 		for (int j = 14; j >= i; j--)
 		{
-			sequance[i + 41][j] = chess[i + 14 - j][j];
+			sequance[i + 41 - 1][14 - j] = chess[i + 14 - j][j];
 		}
 	}
 	//"\"这样的序列
@@ -78,9 +78,9 @@ void flat(char chess[][15], char sequance[][16])
 	}
 	for (int i = 1; i < 11; i++)
 	{
-		for (int j = i-1; j <= 14 - i; j++)
+		for (int j = 0; j <= 14 - i; j++)
 		{
-			sequance[i + 62][j] = chess[j][i + j];
+			sequance[i + 62 - 1][j] = chess[j][i + j];
 		}
 	}
 }

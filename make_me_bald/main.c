@@ -80,14 +80,17 @@ reinput_color:
 	//*********************************************
 	if (winner == player_color)
 	{
+		draw(chess);
 		printf("你赢了\n");
 		system("pause");
 	}
 	if (winner == computer_color)
 	{
+		draw(chess);
 		printf("你输了\n");
 		system("pause");
 	}
+	return 0;
 }
 
 void draw(char chess[][15])
