@@ -19,11 +19,11 @@ void generator(char chess[][15], char neighbors[][15])
 			for (int i = -NEIGHBOR_DEPTH; i <= NEIGHBOR_DEPTH; i++)
 			{
 				temp_x = x + i;
-				if (temp_x < 0 || temp_x>15) continue;
+				if (temp_x < 0 || temp_x>=15) continue;
 				for (int j = -NEIGHBOR_DEPTH; j <= NEIGHBOR_DEPTH; j++)
 				{
 					temp_y = y + j;
-					if (temp_y < 0 || temp_y>15) continue;
+					if (temp_y < 0 || temp_y>=15) continue;
 					if (chess[temp_x][temp_y] != empty)
 					{
 						neighbors[x][y]++;

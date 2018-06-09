@@ -4,7 +4,7 @@
 
 int ab_min(char chess[][15], int depth, int alpha, int beta)
 {
-	int temp, best=1000000000;
+	int temp, best = 1000000000;
 	if (depth <= 0 || whos_winner(chess) != empty)
 	{
 		temp = scoring(chess);
@@ -41,7 +41,7 @@ int ab_min(char chess[][15], int depth, int alpha, int beta)
 
 int ab_max(char chess[][15], int depth, int alpha, int beta)
 {
-	int temp, best=-1000000000;
+	int temp, best = -1000000000;
 	if (depth <= 0 || whos_winner(chess) != empty)
 	{
 		temp = scoring(chess);
@@ -63,7 +63,7 @@ int ab_max(char chess[][15], int depth, int alpha, int beta)
 			if (neighbors != 0)
 			{
 				chess[i][j] = computer_color;
-				temp = min(chess, depth - 1, alpha, best > beta ? best : beta);
+				temp = ab_min(chess, depth - 1, alpha, best > beta ? best : beta);
 				chess[i][j] = empty;
 				if (temp > best)
 				{
