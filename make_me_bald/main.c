@@ -73,9 +73,12 @@ reinput_color:
 			goto reinput_position;
 		}
 		draw(chess);
+		winner = whos_winner(chess);
+		if (winner != empty)break;
 		computer_do(chess);
 		chess_num++;
 		winner = whos_winner(chess);
+		if (winner != empty)break;
 	}
 	//*********************************************
 	if (winner == player_color)
