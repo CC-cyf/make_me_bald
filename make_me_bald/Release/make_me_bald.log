@@ -1,13 +1,4 @@
-﻿  alpha_beta.c
-  compute.c
-e:\visual studio\make_me_bald\make_me_bald\compute.c(118): warning C4048: “char (*)[16]”和“char [72][15]”数组的下标不同
-e:\visual studio\make_me_bald\make_me_bald\compute.c(127): warning C4048: “char (*)[16]”和“char [72][15]”数组的下标不同
-  evaluate.c
+﻿  evaluate.c
 e:\visual studio\make_me_bald\make_me_bald\evaluate.c(7): warning C4028: 形参 1 与声明不同
-  main.c
-e:\visual studio\make_me_bald\make_me_bald\main.c(44): warning C4477: “scanf”: 格式字符串“%d”需要类型“int *”的参数，但可变参数 1 拥有了类型“char *”
-  e:\visual studio\make_me_bald\make_me_bald\main.c(44): note: 请考虑在格式字符串中使用“%hhd”
-  minimax.c
-  正在生成代码...
   LINK : 已指定 /LTCG，但不需要生成代码；从链接命令行中移除 /LTCG 以提高链接器性能
   make_me_bald.vcxproj -> E:\Visual Studio\make_me_bald\Release\make_me_bald.exe

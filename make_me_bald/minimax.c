@@ -21,7 +21,6 @@ struct point maxmin(char chess[][15], int depth)
 			{
 				chess[i][j] = computer_color;
 				temp = min(chess, depth - 1);
-				scores[i][j] = temp;
 				if (temp == best)
 				{
 					p.x = i;

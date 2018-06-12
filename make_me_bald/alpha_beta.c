@@ -32,11 +32,10 @@ int ab_min(char chess[][15], int depth, int alpha, int beta)
 				{
 					best = temp;
 				}
-				if (temp < beta) goto jianzhi;
+				if (temp <= beta) return temp;
 			}
 		}
 	}
-jianzhi:
 	return best;
 }
 
@@ -70,10 +69,9 @@ int ab_max(char chess[][15], int depth, int alpha, int beta)
 				{
 					best = temp;
 				}
-				if (temp > alpha)goto jianzhi;
+				if (temp >= alpha)return temp;
 			}
 		}
 	}
-jianzhi:
 	return best;
 }
