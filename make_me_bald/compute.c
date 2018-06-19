@@ -1,4 +1,6 @@
 ﻿#include "const.h"
+#include <conio.h>
+#include <stdlib.h>
 
 void computer_do(char chess[][15])
 {
@@ -8,9 +10,11 @@ void computer_do(char chess[][15])
 }
 
 //生成待计算的位置图
-void generator(char chess[][15], char neighbors[][15])
+neighbor * generator(char chess[][15])
 {
-	int x, y, temp_x, temp_y;
+	int x, y, temp_x, temp_y, temp = 0;
+	neighbor *head, *temp_a, *temp_b;
+	head = temp_a = temp_b = (neighbor *)malloc(sizeof(neighbor));
 	for (x = 0; x < 15; x++)
 	{
 		for (y = 0; y < 15; y++)
@@ -26,12 +30,25 @@ void generator(char chess[][15], char neighbors[][15])
 					if (temp_y < 0 || temp_y >= 15) continue;
 					if (chess[temp_x][temp_y] != empty)
 					{
-						neighbors[x][y]++;
+						if (temp != 0)
+						{
+							temp_b = (neighbor *)malloc(sizeof(neighbor));
+							temp_a->next = temp_b;
+							temp_a = temp_b;
+						}
+						temp_a->p.x = x;
+						temp_a->p.y = y;
+						temp++;
+						goto next_point;
 					}
 				}
 			}
+
+		next_point:;
 		}
 	}
+	temp_a->next = NULL;
+	return head;
 }
 
 //将棋盘序列化，以便于评估

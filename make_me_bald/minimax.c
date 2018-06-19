@@ -1,45 +1,38 @@
 ﻿#include "const.h"
+#include <conio.h>
+#include <stdlib.h>
 
-struct point maxmin(char chess[][15], int depth)
+point maxmin(char chess[][15], int depth)
 {
 	struct point p;
-	int best = MIN, temp, scores[15][15];
-	char neighbors[15][15];
-	for (int i = 0; i < 15; i++)
+	int best = MIN, temp,score[15][15], alpha = MAX;
+	neighbor *neighbor_p, *temp_p;
+	neighbor_p=generator(chess);
+	while (neighbor_p != NULL)
 	{
-		for (int j = 0; j < 15; j++)
+		chess[neighbor_p->p.x][neighbor_p->p.y] = computer_color;
+		temp = ab_min(chess, depth - 1, alpha, best > MIN ? best : MIN);
+		score[neighbor_p->p.x][neighbor_p->p.y] = temp;
+		if (temp == best)
 		{
-			neighbors[i][j] = 0;
+			p.x = neighbor_p->p.x;
+			p.y = neighbor_p->p.y;
 		}
-	}
-	generator(chess, neighbors);
-	for (int i = 0; i < 15; i++)
-	{
-		for (int j = 0; j < 15; j++)
+		if (temp > best)
 		{
-			if (neighbors[i][j] != 0)
-			{
-				chess[i][j] = computer_color;
-				temp = min(chess, depth - 1);
-				if (temp == best)
-				{
-					p.x = i;
-					p.y = j;
-				}
-				if (temp > best)
-				{
-					best = temp;
-					p.x = i;
-					p.y = j;
-				}
-				chess[i][j] = empty;
-			}
+			best = temp;
+			p.x = neighbor_p->p.x;
+			p.y = neighbor_p->p.y;
 		}
+		chess[neighbor_p->p.x][neighbor_p->p.y] = empty;
+		temp_p = neighbor_p;
+		neighbor_p = neighbor_p->next;
+		free(temp_p);
 	}
 	return p;
 }
 
-int min(char chess[][15], int depth)
+int mini(char chess[][15], int depth)
 {
 	int best = MAX, temp;
 	if (depth <= 0 || whos_winner(chess) != empty)
@@ -55,7 +48,7 @@ int min(char chess[][15], int depth)
 			neighbors[i][j] = 0;
 		}
 	}
-	generator(chess, neighbors);
+	generator(chess);
 	for (int i = 0; i < 15; i++)
 	{
 		for (int j = 0; j < 15; j++)
@@ -63,7 +56,7 @@ int min(char chess[][15], int depth)
 			if (neighbors[i][j] != 0)
 			{
 				chess[i][j] = player_color;
-				temp = max(chess, depth - 1);
+				temp = maxi(chess, depth - 1);
 				chess[i][j] = empty;
 				if (temp < best)
 				{
@@ -75,10 +68,10 @@ int min(char chess[][15], int depth)
 	return best;
 }
 
-int max(char chess[][15], int depth)
+int maxi(char chess[][15], int depth)
 {
 	int best = MIN, temp;
-	if (depth <= 0 || whos_winner(chess))
+	if (depth <= 0 || whos_winner(chess) != empty)
 	{
 		temp = scoring(chess);
 		return temp;
@@ -91,7 +84,7 @@ int max(char chess[][15], int depth)
 			neighbors[i][j] = 0;
 		}
 	}
-	generator(chess, neighbors);
+	generator(chess);
 	for (int i = 0; i < 15; i++)
 	{
 		for (int j = 0; j < 15; j++)
@@ -99,7 +92,7 @@ int max(char chess[][15], int depth)
 			if (neighbors[i][j] != 0)
 			{
 				chess[i][j] = computer_color;
-				temp = min(chess, depth - 1);
+				temp = mini(chess, depth - 1);
 				chess[i][j] = empty;
 				if (temp > best)
 				{

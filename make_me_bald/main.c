@@ -8,7 +8,7 @@ int main()
 	char x, y, winner = empty;
 	int chess_num = 0;
 	//extern player_color, computer_color;
-	char chess[15][15];
+	//char chess[15][15];
 	for (int i = 0; i < 15; i++)
 	{
 		for (int j = 0; j < 15; j++)
@@ -93,13 +93,14 @@ reinput_color:
 		printf("你输了\n");
 		system("pause");
 	}
+	system("exit");
 	return 0;
 }
 
 void draw(char chess[][15])
 {
 	system("cls");
-	printf("*代表白子，%c 代表黑子\n", 1);
+	printf("@ 代表白子，%c 代表黑子\n", 1);
 	printf("\t");
 	for (int i = 0; i < 15; i++)
 	{
@@ -118,7 +119,7 @@ void draw(char chess[][15])
 			}
 			else if (chess[i][j] == white)
 			{
-				printf("* ");
+				printf("@ ");
 			}
 			else
 			{
